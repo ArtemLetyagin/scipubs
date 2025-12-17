@@ -11,8 +11,7 @@ class Settings:
     """
 
     litellm_base_url: str = os.getenv("LITELLM_BASE_URL", "http://a6k2.dgx:34000/v1")
-    # litellm_api_key: str = os.getenv("LITELLM_API_KEY", "sk-1yvtuYMQN37uRpXQe44qrA")
-    litellm_api_key: str = os.getenv("LITELLM_API_KEY", "sk-wJOTEk68IfYmW5ePxtdpYQ") # Rosetta
+    litellm_api_key: str = os.getenv("LITELLM_API_KEY")
     model_name: str = os.getenv("MODEL_NAME", "qwen3-32b")
 
     postgres_host: str = os.getenv("POSTGRES_HOST", "176.32.34.156")

@@ -409,10 +409,5 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    # main()
-    o = run_one_query("Построй динамику числа публикаций по теме deep learning с 2020 по 2024", interactive=False)
-    print(o)
-
-    state, user_query = o
-
-    print(state.keys())
+    main()
+    
