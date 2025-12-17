@@ -1,4 +1,4 @@
-# Multi-Agent System for Scientific Publications (CLI-версия)
+# Multi-Agent System for Scientific Publications
 
 Эта версия проекта упрощена: **без FastAPI и Docker**.
 Запуск через `main.py` в режиме непрерывного диалога (REPL) в консоли.
