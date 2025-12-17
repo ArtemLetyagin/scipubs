@@ -24,9 +24,9 @@ scipubs_mas_cli/
       plotting.py   # Построение графиков и возврат в base64
   data/                       # Черновики проекта в ipynb
     __init__.py
-    init_db_from_notebook.py  # Код из исходного Jupyter-ноутбука для генерации БД и таблицы
+    init_db_from_notebook.py  
   notebooks/
-    Planner_test.ipynb        # Ваш исходный ноутбук
+    Planner_test.ipynb        
   main.py
   requirements.txt
 ```
