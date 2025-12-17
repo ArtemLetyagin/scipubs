@@ -1,0 +1,137 @@
+Selected publications export
+Created: 2025-12-16T20:43:37
+Filters: {'patterns': ['%deep learning%'], 'year_from': 2020, 'year_to': 2024}
+================================================================================
+
+#1
+DOI: https://doi.org/10.1016/j.aej.2020.10.046
+Year: 2020
+Title: Efficient 3D Deep Learning Model for Medical Image Semantic Segmentation
+Journal: Alexandria Engineering Journal
+Cited by: 111
+Domain: Physical Sciences
+Field: Engineering
+Subfield: Biomedical Engineering
+Topic: Medical Imaging and Analysis
+--------------------------------------------------------------------------------
+
+#2
+DOI: https://doi.org/10.1109/icdsba51020.2020.00089
+Year: 2020
+Title: Lesion Segmentation Method Based on Deep Learning CT Image of Pulmonary Tuberculosis
+Journal: 2021 5th Annual International Conference on Data Science and Business Analytics (ICDSBA)
+Cited by: 2
+Domain: Health Sciences
+Field: Medicine
+Subfield: Radiology, Nuclear Medicine and Imaging
+Topic: COVID-19 diagnosis using AI
+--------------------------------------------------------------------------------
+
+#3
+DOI: https://doi.org/10.1111/mice.12565
+Year: 2020
+Title: Structural sensing with deep learning: Strain estimation from acceleration data for fatigue assessment
+Journal: Computer-Aided Civil and Infrastructure Engineering
+Cited by: 76
+Domain: Physical Sciences
+Field: Engineering
+Subfield: Civil and Structural Engineering
+Topic: Structural Health Monitoring Techniques
+--------------------------------------------------------------------------------
+
+#4
+DOI: https://doi.org/10.2186/jpr.jpor_2019_354
+Year: 2020
+Title: A system for designing removable partial dentures using artificial intelligence. Part 1. Classification of partially edentulous arches using a convolutional neural network
+Journal: Journal of Prosthodontic Research
+Cited by: 63
+Domain: Health Sciences
+Field: Dentistry
+Subfield: Oral Surgery
+Topic: Dental Radiography and Imaging
+--------------------------------------------------------------------------------
+
+#5
+DOI: https://doi.org/10.25417/uic.13475292.v1
+Year: 2020
+Title: Lifelong Representation Learning for NLP Applications
+Journal: NULL
+Cited by: 0
+Domain: Physical Sciences
+Field: Computer Science
+Subfield: Artificial Intelligence
+Topic: Topic Modeling
+--------------------------------------------------------------------------------
+
+#6
+DOI: https://doi.org/10.48550/arxiv.2011.06399
+Year: 2020
+Title: Fast robust peg-in-hole insertion with continuous visual servoing
+Journal: arXiv (Cornell University)
+Cited by: 13
+Domain: Physical Sciences
+Field: Computer Science
+Subfield: Computer Vision and Pattern Recognition
+Topic: Advanced Vision and Imaging
+--------------------------------------------------------------------------------
+
+#7
+DOI: None
+Year: 2020
+Title: Predicting Themes within Complex Unstructured Texts: A Case Study on Safeguarding Reports
+Journal: arXiv (Cornell University)
+Cited by: 0
+Domain: Physical Sciences
+Field: Computer Science
+Subfield: Artificial Intelligence
+Topic: Topic Modeling
+--------------------------------------------------------------------------------
+
+#8
+DOI: https://doi.org/10.3390/s22239079
+Year: 2022
+Title: Vision-Based Detection and Classification of Used Electronic Parts
+Journal: Sensors
+Cited by: 17
+Domain: Physical Sciences
+Field: Engineering
+Subfield: Industrial and Manufacturing Engineering
+Topic: Industrial Vision Systems and Defect Detection
+--------------------------------------------------------------------------------
+
+#9
+DOI: https://doi.org/10.1109/iccci56745.2023.10128564
+Year: 2023
+Title: Recognition of Tamil handwritten characters using Scrabble GAN
+Journal: 2022 International Conference on Computer Communication and Informatics (ICCCI)
+Cited by: 4
+Domain: Physical Sciences
+Field: Computer Science
+Subfield: Computer Vision and Pattern Recognition
+Topic: Handwritten Text Recognition Techniques
+--------------------------------------------------------------------------------
+
+#10
+DOI: https://doi.org/10.1142/s0219720024500161
+Year: 2024
+Title: Construction of a multi-tissue compound–target interaction network of Qingfei Paidu decoction in COVID-19 treatment based on deep learning and transcriptomic analysis
+Journal: Journal of Bioinformatics and Computational Biology
+Cited by: 2
+Domain: Life Sciences
+Field: Pharmacology, Toxicology and Pharmaceutics
+Subfield: Pharmacology
+Topic: Plant-based Medicinal Research
+--------------------------------------------------------------------------------
+
+#11
+DOI: https://doi.org/10.14569/ijacsa.2024.0150259
+Year: 2024
+Title: A Lightweight Neural Network for Accurate Rice Panicle Detection and Counting in Field Conditions
+Journal: International Journal of Advanced Computer Science and Applications
+Cited by: 2
+Domain: Life Sciences
+Field: Agricultural and Biological Sciences
+Subfield: Plant Science
+Topic: Smart Agriculture and AI
+--------------------------------------------------------------------------------
+

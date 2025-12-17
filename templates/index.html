@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Научный чат с базой статей</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f3f4f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      table{
+        width: 50%;
+      }
+      .chat-container {
+        width: 100%;
+        max-width: 900px;
+        height: 90vh;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .chat-header {
+        padding: 16px 20px;
+        background: #111827;
+        color: #f9fafb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .chat-header h1 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .chat-header span {
+        font-size: 12px;
+        opacity: 0.8;
+      }
+
+      .chat-window {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        background: #f9fafb;
+      }
+
+      .message {
+        max-width: 75%;
+        margin-bottom: 12px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-size: 14px;
+        line-height: 1.4;
+        white-space: pre-wrap;
+      }
+
+      .message.user {
+        margin-left: auto;
+        background: #2563eb;
+        color: #ffffff;
+        border-bottom-right-radius: 2px;
+      }
+
+      .message.bot {
+        margin-right: auto;
+        background: #e5e7eb;
+        color: #111827;
+        border-bottom-left-radius: 2px;
+      }
+
+      .chat-input-area {
+        border-top: 1px solid #e5e7eb;
+        padding: 10px;
+        display: flex;
+        gap: 8px;
+        background: #ffffff;
+      }
+
+      .chat-input-area textarea {
+        flex: 1;
+        resize: none;
+        border-radius: 10px;
+        border: 1px solid #d1d5db;
+        padding: 8px 10px;
+        font-size: 14px;
+        max-height: 120px;
+        min-height: 40px;
+      }
+
+      .chat-input-area button {
+        padding: 0 18px;
+        border-radius: 10px;
+        border: none;
+        background: #2563eb;
+        color: #ffffff;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .chat-input-area button:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+
+      .typing-indicator {
+        font-size: 12px;
+        color: #6b7280;
+        padding: 0 20px 8px;
+        height: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-header">
+        <div>
+          <h1>Научный чат</h1>
+          <span>Работа с базой научных статей (RAG)</span>
+        </div>
+        <span id="status">Готов</span>
+      </div>
+
+      <div id="chat-window" class="chat-window">
+        <div class="message bot">
+          Привет! Я агент для работы с базой научных статей. Задай мне вопрос —
+          я постараюсь найти ответ в статьях.
+        </div>
+      </div>
+
+      <div class="typing-indicator" id="typing-indicator"></div>
+
+      <div class="chat-input-area">
+        <textarea
+          id="user-input"
+          placeholder="Напишите ваш вопрос о научных статьях..."
+        ></textarea>
+        <button id="send-btn">
+          <span>Отправить</span>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const chatWindow = document.getElementById("chat-window");
+      const userInput = document.getElementById("user-input");
+      const sendBtn = document.getElementById("send-btn");
+      const typingIndicator = document.getElementById("typing-indicator");
+      const statusLabel = document.getElementById("status");
+
+      // Если хочешь слать историю диалога на бэк:
+      const history = [];
+
+      function appendMessage(text, sender, image, html_table) {
+        const div = document.createElement("div");
+        div.classList.add("message", sender);
+        div.textContent = text;
+        chatWindow.appendChild(div);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        
+        console.log(html_table);
+        if (image){
+          console.log("ADDING IMAGE");
+          const img = document.createElement('img');
+          img.src = `data:image/png;base64,${image}`;
+          chatWindow.appendChild(img);
+        }
+
+        if(html_table){
+          console.log("ADDING TABLE");
+          const div_table = document.createElement("div");
+          div_table.innerHTML = html_table;
+          div_table.style.width = "80%";
+          div_table.style.overflowX = 'auto';
+          div_table.style.border = "1px solid black";
+          chatWindow.appendChild(div_table);
+        }
+      }
+
+      async function sendMessage() {
+        const text = userInput.value.trim();
+        if (!text) return;
+
+        // Добавляем сообщение пользователя в окно и историю
+        appendMessage(text, "user", false, false);
+        history.push({ role: "user", content: text });
+
+        userInput.value = "";
+        userInput.style.height = "40px";
+
+        sendBtn.disabled = true;
+        typingIndicator.textContent = "Модель думает...";
+        statusLabel.textContent = "Обработка запроса...";
+
+        try {
+          const response = await fetch("/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: text,
+              history: history,
+            }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            const errorMsg =
+              errorData.error ||
+              `Ошибка при запросе к серверу: ${response.status}`;
+            appendMessage(errorMsg, "bot", false, false);
+            history.push({ role: "assistant", content: errorMsg });
+          } else {
+            const data = await response.json();
+            const reply = data.reply || "[Пустой ответ от модели]";
+            const image = data.plot_base64 || false;
+            const html_table = data.html_table || false;
+
+            appendMessage(reply, "bot", image, html_table);
+            history.push({ role: "assistant", content: reply });
+          }
+        } catch (err) {
+          appendMessage(
+            "Ошибка сети или сервера. Проверьте консоль браузера.",
+            "bot",
+            false,
+            false
+          );
+          console.error(err);
+        } finally {
+          sendBtn.disabled = false;
+          typingIndicator.textContent = "";
+          statusLabel.textContent = "Готов";
+        }
+      }
+
+      // Отправка по кнопке
+      sendBtn.addEventListener("click", sendMessage);
+
+      // Отправка по Ctrl+Enter или Command+Enter
+      userInput.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+
+      // Авто-изменение высоты textarea
+      userInput.addEventListener("input", () => {
+        userInput.style.height = "auto";
+        userInput.style.height = Math.min(userInput.scrollHeight, 120) + "px";
+      });
+    </script>
+  </body>
+</html>
