@@ -60,6 +60,7 @@ python app.py
 ### Интерактивный режим (REPL)
 
 ```bash
+cd scipubs_mas_cli
 python main.py
 ```
 
