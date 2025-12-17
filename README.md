@@ -22,7 +22,7 @@ scipubs_mas_cli/
     tools/
       openalex.py   # Интеграция с OpenAlex API
       plotting.py   # Построение графиков и возврат в base64
-  data/
+  data/                       # Черновики проекта в ipynb
     __init__.py
     init_db_from_notebook.py  # Код из исходного Jupyter-ноутбука для генерации БД и таблицы
   notebooks/
@@ -43,12 +43,6 @@ pip install -r requirements.txt
 3. Убедитесь, что PostgreSQL запущен и доступен с параметрами из `app/config.py`
    (по умолчанию: `host=localhost`, `db=papers_db`, `user=postgres`, `password=postgres`).
    При необходимости поменяйте настройки в `config.py`.
-
-4. Инициализируйте БД и таблицу `articles` с искусственными данными:
-
-```bash
-python -m data.init_db_from_notebook
-```
 
 ## Запуск
 
