@@ -6,29 +6,33 @@
 ## Структура
 
 ```text
-scipubs_mas_cli/
-  app/
-    config.py       # Конфигурация LLM и PostgreSQL
-    db.py           # Подключение к БД и выполнение SQL (только SELECT)
-    memory.py       # Долговременная память (таблица agent_memory)
-    llm.py          # Обёртка над ChatOpenAI (LiteLLM / OpenAI-совместимый endpoint)
-    safety.py       # Простые проверки безопасности SQL и запросов
-    graph_app.py    # LangGraph-граф: Planner → Classifier → Collector → Analyst
-    agents/
-      planner.py    # Планировщик анализа
-      classifier.py # Выделение предметных тем (без расширения операциями)
-      collector.py  # Детерминированная сборка SQL + (опционально) сбор агрегатов из OpenAlex
-      analyst.py    # Аналитический агент + построение графиков
-    tools/
-      openalex.py   # Интеграция с OpenAlex API
-      plotting.py   # Построение графиков и возврат в base64
-  data/                       # Черновики проекта в ipynb
-    __init__.py
-    init_db_from_notebook.py  
-  notebooks/
-    Planner_test.ipynb        
-  main.py
-  requirements.txt
+  app.py              # Flask сервис
+  docker-compose.yaml # docker compose файл для запуска Postgres
+  templates/
+    index.html        # UI Flask приложения
+  scipubs_mas_cli/
+    app/
+      config.py       # Конфигурация LLM и PostgreSQL
+      db.py           # Подключение к БД и выполнение SQL (только SELECT)
+      memory.py       # Долговременная память (таблица agent_memory)
+      llm.py          # Обёртка над ChatOpenAI (LiteLLM / OpenAI-совместимый endpoint)
+      safety.py       # Простые проверки безопасности SQL и запросов
+      graph_app.py    # LangGraph-граф: Planner → Classifier → Collector → Analyst
+      agents/
+        planner.py    # Планировщик анализа
+        classifier.py # Выделение предметных тем (без расширения операциями)
+        collector.py  # Детерминированная сборка SQL + (опционально) сбор агрегатов из OpenAlex
+        analyst.py    # Аналитический агент + построение графиков
+      tools/
+        openalex.py   # Интеграция с OpenAlex API
+        plotting.py   # Построение графиков и возврат в base64
+    data/                       # Черновики проекта в ipynb
+      __init__.py
+      init_db_from_notebook.py  
+    notebooks/
+      Planner_test.ipynb        
+    main.py
+    requirements.txt
 ```
 
 ## Установка
@@ -37,6 +41,7 @@ scipubs_mas_cli/
 2. Установите зависимости:
 
 ```bash
+cd scipubs_mas_cli
 pip install -r requirements.txt
 ```
 
@@ -45,6 +50,12 @@ pip install -r requirements.txt
    При необходимости поменяйте настройки в `config.py`.
 
 ## Запуск
+
+### Запуск Flask приложения
+
+```bash
+python app.py
+```
 
 ### Интерактивный режим (REPL)
 
